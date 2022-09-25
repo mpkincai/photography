@@ -52,7 +52,7 @@ getArgv $argv | while read -l key value
 end
 
 #-- Default Inputs
-if not set -q pictureDir ; set pictureDir /Users/mkincaid/Pictures/workflow/5-metadata-added ; end
+if not set -q pictureDir ; set pictureDir ~/Pictures/workflow/5-metadata-added ; end
 if not set -q DEBUG ; set DEBUG false ; end
 
 #-- Main

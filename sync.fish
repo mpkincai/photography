@@ -15,7 +15,7 @@
 set dirHashFile dirHash.json
 set logFile /var/log/photography/sync.log
 set month (date +"%m")
-set scriptVersion 1.1
+set scriptVersion 1.2
 set globalExclude ".*,*.json,*.sums"
 set excludeFile ".exclude"
 
@@ -139,8 +139,8 @@ find $pictureDir -type d | while read path
        end
    else
       #-- prior to running rclone, check for file date updates and recalc directory hash
+      tslog "Check file dates for directory $path"
       find "$path" -maxdepth 1 -type f \( -iname '*.jpg' -o -iname '*.jpeg' \) -print | while read filename
-         tslog "Check file dates for directory $path"
          changeCreateDate
       end
       set dirHash (getDirHash)

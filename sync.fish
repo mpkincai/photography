@@ -12,10 +12,13 @@
 #   - tslog global function
 
 #-- Global Variables
+set uID (id -u)
+set gID (id -g)
 set dirHashFile dirHash.json
-set logFile /var/log/photography/sync.log
+set logDir /var/log/photography
+set logFile $logDir/sync.log
 set month (date +"%m")
-set scriptVersion 1.2
+set scriptVersion 1.3
 set globalExclude ".*,*.json,*.sums"
 set excludeFile ".exclude"
 
@@ -75,6 +78,12 @@ end
 #
 
 #-- Log script startup
+if not test -d "$logDir"
+   echo "Creating missing log directory"
+   sudo mkdir $logDir
+   sudo chown $uID:$gID $logDir
+   sudo chmod 775 $logDir
+end
 tslog "Executing Script"
 
 #-- Parse and assign input values
